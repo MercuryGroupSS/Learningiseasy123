@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A gentle number game: count, add, subtract, and grow a flower garden.">
+<title>Number Garden</title>
+<style>
+:root{font-family:ui-rounded,'Arial Rounded MT Bold',system-ui,sans-serif;color:#234c3b;background:#f5f7e9}*{box-sizing:border-box}body{margin:0}button,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible{outline:4px solid #d67a19;outline-offset:4px}header{max-width:1000px;margin:auto;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:14px}h1{font-size:clamp(28px,5vw,44px);margin:0;letter-spacing:-1px}header p{margin:5px 0;color:#567060}.sound{background:white;border:2px solid #cfdfc5;border-radius:30px;padding:12px 18px;min-height:48px}main{max-width:900px;margin:auto;padding:0 20px 30px}.settings{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:10px 0 24px}.settings label{display:flex;align-items:center;gap:8px}select{padding:10px;border:1px solid #bacdb4;border-radius:12px;background:white;color:#234c3b;min-height:48px}.card{background:#fffef8;border:2px solid #d9e5cb;box-shadow:0 12px 30px #345b3210;border-radius:30px;text-align:center;padding:clamp(20px,5vw,40px)}.eyebrow{font-weight:700;color:#64804f;text-transform:uppercase;letter-spacing:2px;font-size:13px}.question{font-size:clamp(28px,5vw,42px);margin:14px 0}.objects{min-height:112px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:10px}.group{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:290px}.object{font-size:38px}.operator{font-size:32px;font-weight:bold}.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:560px;margin:24px auto 0}.answer{border:2px solid #b8d4a4;border-bottom:6px solid #9fbe88;background:#eef7df;color:#284c36;border-radius:20px;min-height:86px;font-size:34px;font-weight:750}.answer:hover{background:#e0f0c9}.answer:disabled{cursor:default}.answer.correct{background:#cbeab1}.answer.try{background:#fff0cd;border-color:#e2bf75}.message{min-height:56px;margin:22px 0 6px;font-size:21px;font-weight:650}.next{background:#315b42;color:white;border:0;border-radius:18px;padding:16px 30px;min-height:56px;font-weight:650}.next:disabled{opacity:.45;cursor:default}.repeat{display:block;margin:18px auto 0;background:transparent;border:0;color:#41694b;text-decoration:underline;min-height:44px}.garden{margin-top:24px;background:#e7efda;border-radius:24px;padding:22px;text-align:center}.garden h2{font-size:22px;margin:0 0 6px}.flowers{min-height:60px;font-size:36px;letter-spacing:6px;overflow-wrap:anywhere}.garden p{margin:8px 0;color:#526f4c}.reset{background:transparent;color:#526f4c;border:0;text-decoration:underline;padding:10px;min-height:44px}footer{text-align:center;font-size:14px;color:#5c7158;padding:18px}@media(max-width:500px){header{padding:20px 16px}.sound{font-size:14px;padding:10px}.answers{gap:9px}.answer{min-height:76px}.object{font-size:30px}.settings{gap:10px}.settings label{font-size:14px}.card{border-radius:24px}}
+</style>
+</head>
+<body>
+<header><div><h1>🌱 Number Garden</h1><p>Little numbers. Lovely discoveries.</p></div><button class="sound" id="sound" aria-pressed="false">🔇 Voice off</button></header>
+<main>
+<div class="settings"><label>Let’s play <select id="mode"><option value="count">Counting</option><option value="add">Adding</option><option value="subtract">Taking away</option><option value="mix">A little of everything</option></select></label><label>Numbers <select id="limit"><option value="5">Up to 5</option><option value="10">Up to 10</option><option value="20">Up to 20</option></select></label></div>
+<section class="card" aria-label="Number game"><div class="eyebrow">Let your learning bloom</div><h2 class="question" id="question"></h2><div class="objects" id="objects" aria-hidden="true"></div><div class="answers" id="answers" aria-label="Choose an answer"></div><p class="message" id="message" role="status" aria-live="polite"></p><button class="next" id="next" disabled>Next little adventure →</button><button class="repeat" id="repeat">🔊 Read the question</button></section>
+<section class="garden"><h2>Your growing garden</h2><p id="progress"></p><div class="flowers" id="flowers" aria-hidden="true"></div><button class="reset" id="reset">Start a fresh garden</button></section>
+<footer>No timer. No rush. Just a little growing, every day. 🌼</footer>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const flowers=['🌷','🌼','🌻','🪻','🌺'];
+let earned=0,voice=false,current=null,solved=false,round=0;
+try{earned=Math.max(0,Math.floor(Number(localStorage.getItem('numberGardenFlowers'))||0));}catch{}
+function random(max){return Math.floor(Math.random()*(max+1));}
+function makeQuestion(mode,max){
+ if(mode==='mix') mode=['count','add','subtract'][random(2)];
+ let a,b,answer,prompt,speech;
+ if(mode==='count'){a=1+random(max-1);b=0;answer=a;prompt='How many apples?';speech='How many apples do you see?';}
+ else if(mode==='add'){a=random(max);b=random(max-a);answer=a+b;prompt=`${a} + ${b} = ?`;speech=`What is ${a} plus ${b}?`;}
+ else{a=random(max);b=random(a);answer=a-b;prompt=`${a} − ${b} = ?`;speech=`What is ${a} take away ${b}?`;}
+ const choices=new Set([answer]);while(choices.size<3) choices.add(random(max));
+ return{mode,a,b,answer,prompt,speech,choices:[...choices].sort(()=>Math.random()-.5)};
+}
+function speak(text,force=false){if((!voice&&!force)||!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.85;u.pitch=1.1;u.lang='en-US';window.speechSynthesis.speak(u);}
+function group(n,faded=0){const el=document.createElement('span');el.className='group';if(!n){el.textContent='0';el.style.fontSize='32px';}for(let i=0;i<n;i++){const item=document.createElement('span');item.className='object';item.textContent='🍎';if(i>=n-faded){item.style.opacity='.25';item.style.textDecoration='line-through';}el.append(item);}return el;}
+function garden(){ $('progress').textContent=`${earned} ${earned===1?'flower':'flowers'} grown • Every answer helps you learn.`;$('flowers').textContent=Array.from({length:Math.min(earned,30)},(_,i)=>flowers[i%flowers.length]).join(' ')||'🌱';}
+function newRound(){round++;solved=false;current=makeQuestion($('mode').value,Number($('limit').value));$('question').textContent=current.prompt;$('objects').replaceChildren();$('objects').append(group(current.a,current.mode==='subtract'?current.b:0));if(current.mode==='add'){const op=document.createElement('span');op.className='operator';op.textContent='+';$('objects').append(op,group(current.b));}$('answers').replaceChildren();for(const value of current.choices){const button=document.createElement('button');button.className='answer';button.textContent=value;button.setAttribute('aria-label',String(value));button.onclick=()=>answer(value,button);$('answers').append(button);}$('message').textContent='Take your time. You can count the apples.';$('next').disabled=true;speak(current.speech);}
+function answer(value,button){if(solved)return;if(value!==current.answer){button.classList.add('try');button.disabled=true;$('message').textContent='Good try! Count once more and try another number.';speak('Good try! Let’s count once more.');return;}solved=true;earned++;button.classList.add('correct');for(const b of $('answers').children)b.disabled=true;try{localStorage.setItem('numberGardenFlowers',String(earned));}catch{}garden();$('message').textContent=earned%5===0?'Wonderful growing! Five more flowers in your garden! 🌻':'You found it! A new flower for your garden. 🌷';$('next').disabled=false;speak(`You found it! The answer is ${value}. A new flower for your garden.`);}
+$('next').onclick=()=>{newRound();$('answers').firstElementChild.focus();};
+$('mode').onchange=newRound;$('limit').onchange=newRound;
+$('sound').onclick=()=>{voice=!voice;$('sound').textContent=voice?'🔊 Voice on':'🔇 Voice off';$('sound').setAttribute('aria-pressed',String(voice));if(voice)speak(current.speech);else if('speechSynthesis' in window)window.speechSynthesis.cancel();};
+$('repeat').onclick=()=>speak(current.speech,true);
+if(!('speechSynthesis' in window)){$('sound').disabled=true;$('sound').textContent='Voice unavailable';$('repeat').hidden=true;}
+$('reset').onclick=()=>{if(!earned||window.confirm('Start a fresh garden? This clears your flowers on this browser.')){earned=0;try{localStorage.removeItem('numberGardenFlowers');}catch{}garden();newRound();}};
+garden();newRound();
+</script>
+</body></html>
