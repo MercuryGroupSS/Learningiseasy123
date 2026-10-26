@@ -1,17 +1,15 @@
-# Number Garden 🌈
+# Number Garden — Learning Is Easy
 
-iPad and Apple Pencil math-practice web game.
+Twelve-stage iPad math practice adventure with Apple Pencil tracing, handwriting pad, guided concrete–pictorial–abstract teaching, ten-frames, number bonds, spaced review, local progress and stage unlocks.
+
+## Learning structure
+
+Every stage contains eight problems, with up to three drawn from previously introduced concepts. A stage unlocks after six answers are checked as correct. Missed concepts receive greater review weight on subsequent stages.
 
 ## Publishing
 
-The game is supplied as `number-garden-netlify.zip` in the ChatGPT conversation. Extract its files into the repository root, including `index.html`, `bella-manifest.json`, and `netlify.toml`. In Netlify select **Add new project → Import an existing project → GitHub → MercuryGroupSS/Learningiseasy123**. Publish directory: `.`. Build command: leave blank.
+Deploy the repository root to Netlify; no build command or backend needed.
 
-## Narration
+## Important limitations
 
-Bella Voice 2 (Kokoro-82M `af_bella`, speed 0.9, gain −2 dB) is the intended voice. Recorded math narration is not bundled yet, so the app currently uses native iPad voice as fallback.
-
-## Recreated downloadable package — October 26, 2026
-
-The earlier ZIP was not recoverable from the chat reference. The repository now includes a replacement self-contained `index.html` with counting, addition, subtraction, number ranges up to 5/10/20, saved flower rewards, and optional browser narration. Open it directly in a browser; no installation or build is needed.
-
-This replacement does not include Apple Pencil handwriting recognition or recorded Bella narration. The older manifest and Netlify references above describe the original plan, not bundled replacement assets.
+Handwriting is not automatically recognized: the child or adult verifies the answer after revealing it. Stencil completion checks that drawing occurred, not stroke accuracy. The matching Bella voice profile is configured, but actual prerecorded Kokoro/Bella voice clips must still be generated and added to `assets/bella/` and mapped in `bella-manifest.json`. Until then the device voice is used. Progress stays in localStorage on the device.
