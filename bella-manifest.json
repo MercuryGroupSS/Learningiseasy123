@@ -3,7 +3,7 @@
   "model": "onnx-community/Kokoro-82M-v1.0-ONNX",
   "speed": 0.9,
   "gainDb": -2,
-  "pack": "bella-v2",
+  "pack": "bella-v3",
   "clips": {
     "0": "./assets/bella/5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9.mp3",
     "1": "./assets/bella/6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b.mp3",
@@ -212,6 +212,7 @@
     "spaces": "./assets/bella/ff6f0e9a530a025ad61dbea8fefa873faf153860b184d14af9bb4f57354f93cd.mp3",
     "to reach ten. Split": "./assets/bella/6d1b2c7bc1194eee7d7cca50af9b204e7e7ac0981c2f71b89affb0f804781f87.mp3",
     "with your pencil. Go slowly and carefully": "./assets/bella/e4716919cbf10c77b741dfb4f1be326a2e43c13e807fa6edb52fb39c61dd4c1d.mp3",
-    "yellow counters and": "./assets/bella/0650d3361517610de9dc58f49cc464ec72cba82284a5b1520915aab502e492c5.mp3"
+    "yellow counters and": "./assets/bella/0650d3361517610de9dc58f49cc464ec72cba82284a5b1520915aab502e492c5.mp3",
+    "Copy the example beside your writing pad. Then try it on your own": "./assets/bella/437bae14556cccaaede9472aff96a03544ba08f99ff2f03f8aa1d56d3ad9baff.mp3"
   }
 }

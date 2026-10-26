@@ -13,3 +13,9 @@ Deploy the repository root to Netlify; no build command or backend needed.
 ## Important limitations
 
 Handwriting is not automatically recognized: the child or adult verifies the answer after revealing it. Stencil completion checks that drawing occurred, not stroke accuracy. Bundled Bella recordings now provide instructions, hints, answers, and encouragement. They match Operation Wild Explorer: Kokoro af_bella, speed 0.9, −2 dB. Number phrases are assembled from recorded segments. The game does not switch to the device voice; if playback is blocked, tap Hear again. Physical iPad playback still needs a target-device check. Progress stays in localStorage on the device.
+
+## Practice controls
+
+Previous stage returns to the preceding stage; Retry this stage starts a fresh eight-question round. Earned stars, completed-answer counts, best scores, and unlocked stages are retained.
+
+After tracing, learners see an example answer beside the writing pad and can copy it before trying independently. Copy practice does not award stars or count as a checked answer. They can skip copying or reopen the example before checking. Bella narrates the copy step.
