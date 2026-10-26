@@ -2,7 +2,7 @@ Number Garden — Bella narration
 
 Synthetic stock voice generated locally using Kokoro-82M v1.0 / af_bella.
 Matches Operation Wild Explorer: fp32 CPU, speed 0.9, 24 kHz mono,
-MP3 libmp3lame quality 2, uniform -2 dB gain. Leading/trailing silence is trimmed.
+MP3 libmp3lame quality 2, uniform -2 dB gain. All speech pauses are preserved; no silence-removal filter is applied.
 Fixed public game text only; no child names, handwriting, or saved progress
 are sent to a speech service. The deployed game plays bundled MP3s and
 does not run a speech model or use a paid generation service.

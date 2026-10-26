@@ -19,3 +19,7 @@ Handwriting is not automatically recognized: the child or adult verifies the ans
 Previous stage returns to the preceding stage; Retry this stage starts a fresh eight-question round. Earned stars, completed-answer counts, best scores, and unlocked stages are retained.
 
 After tracing, learners see an example answer beside the writing pad and can copy it before trying independently. Copy practice does not award stars or count as a checked answer. They can skip copying or reopen the example before checking. Bella narrates the copy step.
+
+## Complete narration recordings
+
+The Bella pack preserves pauses inside sentences. No silence-removal filter is used. Run `node scripts/check-narration.cjs` to validate all 209 embedded recordings and the full-length sentence regression checks.
