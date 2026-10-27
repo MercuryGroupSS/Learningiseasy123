@@ -39,3 +39,11 @@ Use the Player list to switch between named saves. **Add player** creates a sepa
 Names and saved games stay on the current iPad and browser. They do not sync across devices or browsers. A visible message reports if browser storage cannot save. No accounts or passwords are required.
 
 Run `node scripts/check-players.cjs` to verify migration, separate profiles, saved checkpoints, duplicate-name validation, and storage failures.
+
+## Varied practice
+
+Counting rounds cover all numbers 1–5 before repeating one, and use each number no more than twice in an eight-question round. Other lessons avoid consecutive repeated answers and starting numbers when the available exercises allow it, and prefer questions not already used in the round. Number-bond exercises still total ten while varying the pairs.
+
+Each player keeps their own recent-question history across retries, rounds, and reloads. Older saved rounds are adjusted only after the current question; the current writing and completed answers are preserved. Spaced review remains included.
+
+Run `node scripts/check-variety.cjs` to test 2,400 rounds, counting balance, repeat prevention, saved-round repair, review ratios, and separate player history.
