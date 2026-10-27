@@ -23,3 +23,9 @@ After tracing, learners see an example answer beside the writing pad and can cop
 ## Complete narration recordings
 
 The Bella pack preserves pauses inside sentences. No silence-removal filter is used. Run `node scripts/check-narration.cjs` to validate all 209 embedded recordings and the full-length sentence regression checks.
+
+## Pencil-only writing
+
+The writing pad defaults to Apple Pencil only. Finger and palm contacts do not add ink or interrupt an active pen stroke. Select **Pencil, finger or mouse** above the pad for other input. This preference is saved on the current browser separately from learning progress. Buttons remain touch-operated.
+
+Run `node scripts/check-pencil-mode.cjs` for the pen/touch interleaving and preference checks. A physical Apple Pencil/iPad check is still required.
