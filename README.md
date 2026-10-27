@@ -57,3 +57,12 @@ Run `node scripts/check-number-style.cjs` to verify the forms and bundled font. 
 ## Web app icon
 
 The garden-and-number icon is included for browser tabs, iPad/iPhone Home Screen shortcuts, and the web app manifest. Home Screen links use the title Number Garden. Artwork was created with built-in image generation; the prompt is saved in `assets/icons/ARTWORK.txt`.
+
+
+## Spanish Garden
+
+Choose Spanish beside Maths to start an original beginner course: eight short lessons covering greetings, polite words, people, numbers, colours, animals, food, and simple sentences. Each lesson introduces words before eight practice activities mixing listening, meaning choices, matching, typing, and phrase building. Earlier words return for review; mistakes can be retried without lives or timers.
+
+Spanish XP, unlocked lessons, review history, and unfinished answers save separately for each named player in this browser. Maths progress stays available. Recorded Spanish uses the gentle stock Dora voice with normal and slow replay. Speaking practice is optional listen-and-repeat, without microphone recording or pronunciation scoring.
+
+Course text, artwork, and exercises are original; no Duolingo assets or course content are included.

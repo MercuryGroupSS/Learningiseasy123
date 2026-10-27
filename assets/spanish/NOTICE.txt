@@ -1,0 +1,5 @@
+Spanish Garden recordings
+
+36 static Spanish words and phrases synthesized with Kokoro-82M, stock female Spanish voice ef_dora, at speed 0.85 with a 2 dB volume reduction. Spanish phonemes were produced with eSpeak NG. Full speech and pauses are preserved; silence was not trimmed.
+
+Recordings are bundled in spanish-recordings.js for playback without a live voice service. No player input is sent for synthesis. Kokoro license: see ../bella/LICENSE-KOKORO.txt.
