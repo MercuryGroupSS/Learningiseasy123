@@ -1,0 +1,6 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'index.html'),'utf8'),font=fs.readFileSync(path.join(root,'assets/number-garden-written-v1.woff2'));
+const block=html.split('const glyphs={')[1].split('};')[0];const glyphs=Object.fromEntries([...block.matchAll(/(\d):'([^']+)'/g)].map(m=>[m[1],m[2]]));
+assert.equal(Object.keys(glyphs).length,10);assert.equal((glyphs['4'].match(/M/g)||[]).length,2,'open-top four uses separate crossbar and downstroke');assert(glyphs['4'].endsWith('M 68 18 L 68 86'));assert(glyphs['9'].endsWith('M 72 18 L 72 86'),'nine ends in a straight vertical stem');assert(glyphs['9'].includes('Z M'),'closed upper loop is separate from the straight stem');
+assert(html.includes("font-family:'Garden Written Numbers',ui-rounded"));assert(html.includes('unicode-range:U+0030-0039'));assert(html.includes("font-weight:100 1000"));assert(html.includes("src:url('./assets/number-garden-written-v1.woff2')"));assert.equal(font.toString('ascii',0,4),'wOF2');assert.equal(font.readUInt32BE(8),font.length);assert(font.readUInt16BE(12)>0);
+console.log('PASS: open-top 4; closed-loop/straight-stem 9; shared tracing paths; numeric font used throughout; bundled WOFF2 header and size.');

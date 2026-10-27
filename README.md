@@ -47,3 +47,9 @@ Counting rounds cover all numbers 1–5 before repeating one, and use each numbe
 Each player keeps their own recent-question history across retries, rounds, and reloads. Older saved rounds are adjusted only after the current question; the current writing and completed answers are preserved. Spaced review remains included.
 
 Run `node scripts/check-variety.cjs` to test 2,400 rounds, counting balance, repeat prevention, saved-round repair, review ratios, and separate player history.
+
+## Handwritten number shapes
+
+The tracing paths and bundled numeric font use an open-top four and a nine with an oval loop and straight downstroke, matching the supplied handwriting reference. All ten displayed digits use the tracing centerlines; letters retain the existing interface font. The numeric font is bundled locally and needs no external font service.
+
+Run `node scripts/check-number-style.cjs` to verify the forms and bundled font. Rebuild with `python scripts/build-number-font.py` after installing fonttools, shapely, and brotli in a development environment.
