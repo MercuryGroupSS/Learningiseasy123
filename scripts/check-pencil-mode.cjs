@@ -3,7 +3,7 @@ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
 function setup(saved,blocked=false){
  const handlers={},values={numberGardenWritingMode:saved},captures=new Set(),elements={writingMode:{value:'pen'},writingModeHint:{textContent:''},pad:{getContext(){return{}},setAttribute(){},getBoundingClientRect(){return{left:0,top:0}},setPointerCapture:id=>captures.add(id),hasPointerCapture:id=>captures.has(id),releasePointerCapture:id=>captures.delete(id),addEventListener:(name,fn)=>handlers[name]=fn}};
  const ctx=vm.createContext({$:id=>elements[id],window:{addEventListener(){}},localStorage:{getItem:k=>{if(blocked)throw Error('storage blocked');return values[k]},setItem:(k,v)=>{if(blocked)throw Error('storage blocked');values[k]=v}}});
- const source='let ink=[],drawing=false;function draw(){}function resize(){}'+html.slice(html.indexOf("const pad=$('pad')"),html.indexOf('const glyphs='))+html.slice(html.indexOf('function point('),html.indexOf('function enoughInk('));vm.runInContext(source,ctx);
+ const source='let ink=[],drawing=false;function save(){}function draw(){}function resize(){}'+html.slice(html.indexOf("const pad=$('pad')"),html.indexOf('const glyphs='))+html.slice(html.indexOf('function point('),html.indexOf('function enoughInk('));vm.runInContext(source,ctx);
  const read=s=>vm.runInContext(s,ctx),event=(type,id,x=0)=>({pointerType:type,pointerId:id,clientX:x,clientY:x,preventDefault(){}});
  return {read,elements,values,send:(name,type,id,x)=>handlers[name](event(type,id,x))};
 }

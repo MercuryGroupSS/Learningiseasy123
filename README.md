@@ -29,3 +29,13 @@ The Bella pack preserves pauses inside sentences. No silence-removal filter is u
 The writing pad defaults to Apple Pencil only. Finger and palm contacts do not add ink or interrupt an active pen stroke. Select **Pencil, finger or mouse** above the pad for other input. This preference is saved on the current browser separately from learning progress. Buttons remain touch-operated.
 
 Run `node scripts/check-pencil-mode.cjs` for the pen/touch interleaving and preference checks. A physical Apple Pencil/iPad check is still required.
+
+## Named players and saved games
+
+Use the Player list to switch between named saves. **Add player** creates a separate game; **Rename player** changes a name without resetting progress. The existing single-player save is retained under **Player 1** and the original legacy save is left in browser storage.
+
+**Save game** saves explicitly, and the game also saves automatically after writing, lesson steps, hints, checked answers, switching players, and leaving the page. It resumes the current question, copy/independent step, handwriting, hints, and answer-check screen. Each player keeps their own stars, unlocked stages, and best scores.
+
+Names and saved games stay on the current iPad and browser. They do not sync across devices or browsers. A visible message reports if browser storage cannot save. No accounts or passwords are required.
+
+Run `node scripts/check-players.cjs` to verify migration, separate profiles, saved checkpoints, duplicate-name validation, and storage failures.
