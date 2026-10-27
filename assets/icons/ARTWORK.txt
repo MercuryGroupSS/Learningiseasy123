@@ -1,0 +1,6 @@
+Built-in image generation was used.
+
+Final prompt:
+Use case: logo-brand. Asset type: iPad Home Screen web app icon for the children's math game Number Garden. Create one square 1024x1024 icon. A single bold, friendly, simple lavender and purple flower with exactly five rounded petals, warm golden yellow circular center with a clearly legible handwritten white numeral 3, and a short emerald green stem with two soft rounded leaves. Background is a solid very pale lavender (#F2EFFF), opaque and full bleed to the square edges. Clean polished flat vector-like illustration, slightly playful and hand-drawn, excellent contrast, minimal detail, no texture, no shadows, no gradient. Center the flower comfortably in the middle 70 percent of the image, with generous safe padding so iOS icon cropping won't cut anything off. The flower and stem together should form one compact recognizable emblem. No text or letters except the single numeral 3 in the yellow center. No device mockup, no border, no multiple icon variations.
+
+The generated artwork was resized into the browser and Home Screen icon sizes.
